@@ -48,16 +48,16 @@ def create_default_groups(sender, **kwargs):
     # - видаляти коментарі (власні)
     author_group.permissions.add(add_comment, change_comment, delete_comment)
     if created:
-        print("Група 'Автор' створена з правами доступу")
+        # Група 'Автор' створена з правами доступу
     else:
-        print("Група 'Автор' оновлена з правами доступу")
+        # Група 'Автор' оновлена з правами доступу
 
     # Створюємо або отримуємо групу "Модератор"
     moderator_group, created = Group.objects.get_or_create(name='Модератор')
     # Модератор має всі права автора
     moderator_group.permissions.add(add_comment, change_comment, delete_comment)
     if created:
-        print("Група 'Модератор' створена з правами доступу")
+        # Група 'Модератор' створена з правами доступу
     else:
-        print("Група 'Модератор' оновлена з правами доступу")
+        # Група 'Модератор' оновлена з правами доступу
 

@@ -40,6 +40,20 @@ services:
       db:
         condition: service_healthy
 
+  frontend:
+    build: ./frontend
+    container_name: blog_vue
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    expose:
+      - "5173"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - web
+
   nginx:
     image: nginx:alpine
     container_name: blog_nginx
@@ -51,6 +65,7 @@ services:
       - static_volume:/app/staticfiles
     depends_on:
       - web
+      - frontend
 
 volumes:
   mysql_data:
